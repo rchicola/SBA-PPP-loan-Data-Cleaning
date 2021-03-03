@@ -23,6 +23,7 @@ forvalues f=1/8 {
 	*local w = substr(`"`f'"',1,1)
 	use "public_up_to_150k_`f'.dta", clear
 	drop if missing(BorrowerZip) & missing(BorrowerState)
+	drop if BorrowerState != "NV"
 	tostring NAICSCode, gen(strNAICSCode)
 	drop if length(strNAICSCode) < 6
 	*gettoken filename : ith_file , parse(".")
